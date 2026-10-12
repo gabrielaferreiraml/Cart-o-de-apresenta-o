@@ -1,0 +1,605 @@
+
+/* =========================================
+   1. CONFIGURAÇÕES E PALETA DE CORES HSL
+========================================= */
+
+:root {
+    --roxo: hsl(249, 65%, 62%);
+    --roxo-escuro: hsl(249, 58%, 48%);
+    --roxo-claro: hsl(249, 85%, 96%);
+
+    --azul: hsl(198, 100%, 53%);
+    --azul-claro: hsl(195, 95%, 70%);
+
+    --rosa: hsl(338, 82%, 57%);
+    --rosa-claro: hsl(338, 85%, 76%);
+
+    --texto: hsl(222, 35%, 20%);
+    --texto-suave: hsl(220, 12%, 52%);
+    --borda: hsl(225, 30%, 91%);
+    --fundo: hsl(235, 45%, 97%);
+    --branco: hsl(0, 0%, 100%);
+
+    --sombra: 0 24px 70px rgba(48, 35, 110, 0.18);
+    --transicao: 0.3s ease;
+}
+
+/* =========================================
+   2. RESET E FUNDO DA PÁGINA
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding: 45px 20px;
+
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--texto);
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            hsla(249, 80%, 85%, 0.55),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            hsla(195, 100%, 80%, 0.40),
+            transparent 35%
+        ),
+        var(--fundo);
+}
+
+/* =========================================
+   3. TÍTULO DA PÁGINA
+========================================= */
+
+.pagina {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.titulo-pagina {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.etiqueta {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 8px 14px;
+
+    border: 1px solid var(--borda);
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--roxo-escuro);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.titulo-pagina h1 {
+    margin-bottom: 10px;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    letter-spacing: -1.2px;
+}
+
+.titulo-pagina p {
+    color: var(--texto-suave);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   4. CARTÃO PRINCIPAL
+========================================= */
+
+.cartao {
+    position: relative;
+    width: 100%;
+    max-width: 510px;
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+
+    box-shadow: var(--sombra);
+
+    transition:
+        transform var(--transicao),
+        box-shadow var(--transicao);
+}
+
+.cartao:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 80px rgba(48, 35, 110, 0.22);
+}
+
+/* =========================================
+   5. BANNER COM GRADIENTE
+========================================= */
+
+.banner {
+    height: 155px;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 255, 255, 0.35),
+            transparent 25%
+        ),
+        linear-gradient(
+            120deg,
+            var(--azul),
+            var(--roxo),
+            var(--rosa-claro)
+        );
+
+    position: relative;
+}
+
+.banner::after {
+    content: "";
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -45px;
+    top: -100px;
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 25px rgba(255, 255, 255, 0.08),
+        0 0 0 50px rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================
+   6. FOTO DE PERFIL
+========================================= */
+
+.perfil {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: -62px;
+}
+
+.foto-label {
+    position: relative;
+
+    display: block;
+    width: 124px;
+    height: 124px;
+
+    padding: 5px;
+    border-radius: 50%;
+
+    background: var(--branco);
+    box-shadow: 0 9px 28px rgba(24, 32, 60, 0.2);
+
+    cursor: pointer;
+    transition: transform var(--transicao);
+}
+
+.foto-label:hover {
+    transform: scale(1.05);
+}
+
+.foto-label img {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    background: var(--roxo-claro);
+}
+
+.icone-camera {
+    position: absolute;
+    right: 1px;
+    bottom: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    background: var(--roxo);
+    border: 3px solid var(--branco);
+    border-radius: 50%;
+
+    font-size: 15px;
+
+    transition: background var(--transicao);
+}
+
+.foto-label:hover .icone-camera {
+    background: var(--roxo-escuro);
+}
+
+.dica-foto {
+    margin-top: 10px;
+    color: var(--texto-suave);
+    font-size: 11px;
+}
+
+/* =========================================
+   7. NOME E APRESENTAÇÃO
+========================================= */
+
+.cabecalho {
+    padding: 17px 32px 25px;
+    text-align: center;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    margin-bottom: 16px;
+    padding: 8px 12px;
+
+    background: hsl(145, 55%, 95%);
+    border: 1px solid hsl(145, 40%, 87%);
+    border-radius: 30px;
+
+    color: hsl(145, 50%, 30%);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.bolinha {
+    width: 7px;
+    height: 7px;
+
+    background: hsl(145, 60%, 42%);
+    border-radius: 50%;
+}
+
+.cabecalho h2 {
+    margin-bottom: 8px;
+
+    color: var(--texto);
+    font-size: clamp(25px, 5vw, 31px);
+    font-weight: 800;
+    text-align: center;
+
+    letter-spacing: -0.8px;
+}
+
+.profissao {
+    margin-bottom: 12px;
+    color: var(--roxo-escuro);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.descricao {
+    max-width: 340px;
+    margin: 0 auto;
+
+    color: var(--texto-suave);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   8. INFORMAÇÕES DE CONTATO
+========================================= */
+
+.informacoes {
+    margin: 0 24px;
+    padding: 20px;
+
+    background: rgba(243, 246, 252, 0.85);
+    border: 1px solid hsl(225, 35%, 93%);
+    border-left: 4px solid var(--roxo);
+
+    border-radius: 12px;
+}
+
+.informacoes h3 {
+    margin-bottom: 15px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.linha-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding: 13px 0;
+    border-bottom: 1px solid var(--borda);
+}
+
+.linha-info:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.rotulo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--texto);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.simbolo {
+    color: var(--roxo);
+    font-size: 15px;
+}
+
+.linha-info a,
+.valor {
+    max-width: 60%;
+
+    color: var(--texto-suave);
+    font-size: 12px;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.linha-info a {
+    text-decoration: none;
+    transition: color var(--transicao);
+}
+
+.linha-info a:hover {
+    color: var(--roxo-escuro);
+    text-decoration: underline;
+}
+
+/* =========================================
+   9. BOTÕES DAS REDES SOCIAIS
+========================================= */
+
+.redes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 22px 18px;
+}
+
+.rede {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px 16px;
+    border-radius: 30px;
+
+    color: var(--branco);
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition:
+        transform var(--transicao),
+        filter var(--transicao),
+        box-shadow var(--transicao);
+}
+
+.rede:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.08);
+    box-shadow: 0 6px 15px rgba(35, 30, 70, 0.15);
+}
+
+.linkedin {
+    background: hsl(202, 90%, 38%);
+}
+
+.github {
+    background: hsl(225, 20%, 20%);
+}
+
+.portfolio {
+    background: linear-gradient(
+        110deg,
+        var(--azul),
+        var(--roxo)
+    );
+}
+
+/* =========================================
+   10. BOTÃO DE CONTATO
+========================================= */
+
+.botao-contato {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin: 0 24px 25px;
+    padding: 16px 20px;
+
+    color: var(--branco);
+    background: linear-gradient(
+        110deg,
+        var(--azul),
+        var(--roxo),
+        var(--rosa)
+    );
+
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(105, 83, 205, 0.22);
+
+    font-size: 12px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+
+    transition:
+        transform var(--transicao),
+        box-shadow var(--transicao),
+        filter var(--transicao);
+}
+
+.botao-contato:hover {
+    transform: translateY(-2px);
+    filter: saturate(1.15);
+
+    box-shadow: 0 12px 26px rgba(105, 83, 205, 0.32);
+}
+
+.seta {
+    margin-left: auto;
+    font-size: 17px;
+}
+
+/* =========================================
+   11. RODAPÉ DO CARTÃO
+========================================= */
+
+.rodape {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+
+    padding: 17px 12px;
+
+    background: rgba(245, 246, 255, 0.8);
+    border-top: 1px solid var(--borda);
+
+    color: var(--texto-suave);
+    font-size: 11px;
+    text-align: center;
+}
+
+.rodape span {
+    color: var(--roxo);
+}
+
+/* Assinatura externa */
+.assinatura {
+    margin-top: 25px;
+
+    color: var(--texto-suave);
+    font-size: 12px;
+    text-align: center;
+}
+
+.assinatura span {
+    color: var(--rosa);
+}
+
+/* =========================================
+   12. RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 480px) {
+    body {
+        padding: 25px 12px;
+    }
+
+    .titulo-pagina {
+        margin-bottom: 25px;
+    }
+
+    .cartao {
+        border-radius: 20px;
+    }
+
+    .banner {
+        height: 130px;
+    }
+
+    .perfil {
+        margin-top: -55px;
+    }
+
+    .foto-label {
+        width: 110px;
+        height: 110px;
+    }
+
+    .cabecalho {
+        padding: 15px 20px 22px;
+    }
+
+    .informacoes {
+        margin: 0 14px;
+        padding: 15px 12px;
+    }
+
+    .linha-info {
+        gap: 8px;
+    }
+
+    .rotulo {
+        font-size: 9px;
+    }
+
+    .linha-info a,
+    .valor {
+        font-size: 11px;
+    }
+
+    .redes {
+        gap: 8px;
+        padding: 20px 10px;
+    }
+
+    .rede {
+        padding: 9px 12px;
+    }
+
+    .botao-contato {
+        margin-right: 14px;
+        margin-left: 14px;
+    }
+}
+
+/* Acessibilidade: navegação por teclado */
+a:focus-visible,
+.foto-label:focus-visible {
+    outline: 3px solid var(--roxo);
+    outline-offset: 4px;
+}
+
+/* Reduz animações quando solicitado pelo sistema */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

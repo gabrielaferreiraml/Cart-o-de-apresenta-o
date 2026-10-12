@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão de apresentação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="pagina">
+
+        <div class="titulo-pagina">
+            <span class="etiqueta">PORTFÓLIO PROFISSIONAL</span>
+            <h1>Cartão de apresentação</h1>
+            <p>Conectando criatividade, tecnologia e inovação.</p>
+        </div>
+
+        <section class="cartao">
+
+            <!-- Faixa superior colorida -->
+            <div class="banner"></div>
+
+            <!-- Foto com opção para trocar a imagem -->
+            <div class="perfil">
+                <label for="trocar-foto" class="foto-label"
+                       title="Clique para trocar a foto">
+
+                    <img
+                        id="foto-perfil"
+                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=faces"
+                        alt="Foto de perfil de Gabriela Ferreira"
+                    >
+
+                    <span class="icone-camera" aria-hidden="true">📷</span>
+                </label>
+
+                <input
+                    type="file"
+                    id="trocar-foto"
+                    accept="image/*"
+                    hidden
+                >
+
+                <p class="dica-foto">Clique na foto para alterar</p>
+            </div>
+
+            <!-- Nome e profissão -->
+            <header class="cabecalho">
+                <span class="status">
+                    <span class="bolinha"></span>
+                    Disponível para oportunidades
+                </span>
+
+                <h2>Gabriela Ferreira</h2>
+                <p class="profissao">Desenvolvedora Web Full Stack</p>
+
+                <p class="descricao">
+                    Criatividade e tecnologia se encontram para
+                    transformar ideias em experiências digitais.
+                </p>
+            </header>
+
+            <!-- Informações profissionais -->
+            <section class="informacoes">
+                <h3>Informações de contato</h3>
+
+                <div class="linha-info">
+                    <span class="rotulo">
+                        <span class="simbolo">✉</span>
+                        E-mail
+                    </span>
+                    <a href="mailto:gabriela@email.com">
+                        gabriela@email.com
+                    </a>
+                </div>
+
+                <div class="linha-info">
+                    <span class="rotulo">
+                        <span class="simbolo">☎</span>
+                        Telefone
+                    </span>
+                    <a href="tel:+5511999999999">
+                        (11) 99999-9999
+                    </a>
+                </div>
+
+                <div class="linha-info">
+                    <span class="rotulo">
+                        <span class="simbolo">⌖</span>
+                        Localização
+                    </span>
+                    <span class="valor">São Paulo, SP</span>
+                </div>
+
+                <div class="linha-info">
+                    <span class="rotulo">
+                        <span class="simbolo">✦</span>
+                        Especialidade
+                    </span>
+                    <span class="valor">HTML, CSS e JavaScript</span>
+                </div>
+            </section>
+
+            <!-- Redes sociais -->
+            <nav class="redes" aria-label="Redes profissionais">
+                <a class="rede linkedin"
+                   href="https://www.linkedin.com/"
+                   target="_blank"
+                   rel="noopener noreferrer">LinkedIn</a>
+
+                <a class="rede github"
+                   href="https://github.com/"
+                   target="_blank"
+                   rel="noopener noreferrer">GitHub</a>
+
+                <a class="rede portfolio"
+                   href="https://behance.net/"
+                   target="_blank"
+                   rel="noopener noreferrer">Portfólio</a>
+            </nav>
+
+            <!-- Botão de contato -->
+            <a class="botao-contato"
+               href="mailto:gabriela@email.com">
+                <span>✉</span>
+                ENTRE EM CONTATO
+                <span class="seta">↗</span>
+            </a>
+
+            <!-- Rodapé -->
+            <footer class="rodape">
+                <span>✦</span>
+                Pronta para novos desafios criativos
+                <span>✦</span>
+            </footer>
+
+        </section>
+
+        <p class="assinatura">
+            Desenvolvido com criatividade <span>♥</span>
+        </p>
+
+    </main>
+
+    <!-- JavaScript para trocar a foto -->
+    <script>
+        const campoFoto = document.getElementById("trocar-foto");
+        const fotoPerfil = document.getElementById("foto-perfil");
+
+        let urlFotoAnterior = null;
+
+        campoFoto.addEventListener("change", function () {
+            const arquivo = this.files && this.files[0];
+
+            if (!arquivo) {
+                return;
+            }
+
+            if (!arquivo.type.startsWith("image/")) {
+                alert("Por favor, selecione um arquivo de imagem.");
+                this.value = "";
+                return;
+            }
+
+            const novaUrl = URL.createObjectURL(arquivo);
+
+            if (urlFotoAnterior) {
+                URL.revokeObjectURL(urlFotoAnterior);
+            }
+
+            urlFotoAnterior = novaUrl;
+            fotoPerfil.src = novaUrl;
+            this.value = "";
+        });
+
+        fotoPerfil.addEventListener("error", function () {
+            this.alt = "Não foi possível carregar a foto. Clique para escolher outra.";
+        });
+
+        window.addEventListener("beforeunload", function () {
+            if (urlFotoAnterior) {
+                URL.revokeObjectURL(urlFotoAnterior);
+            }
+        });
+    </script>
+
+</body>
+</html>
